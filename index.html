@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORMA | AI OS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="brand">Forma<span class="dot">.</span></div>
+            <nav class="nav-menu">
+                <div class="nav-item active" onclick="showTab('generator', this)">
+                    <span class="nav-icon">✨</span> Контент
+                </div>
+                <div class="nav-item" onclick="showTab('analytics', this)">
+                    <span class="nav-icon">📊</span> Прогресс
+                </div>
+                <div class="nav-item" onclick="showTab('settings', this)">
+                    <span class="nav-icon">⚙️</span> Личное
+                </div>
+            </nav>
+            <div class="sidebar-status">
+                <div class="status-badge">AI Ready</div>
+            </div>
+        </aside>
+
+        <main class="main-viewport">
+            <section id="tab-generator" class="tab-content active">
+                <header class="section-header">
+                    <h1>Создайте описание</h1>
+                    <p>Наполните карточку товара магией Llama 3.3</p>
+                </header>
+
+                <div class="content-grid">
+                    <div class="card editor-card">
+                        <div class="input-group">
+                            <label>Что продаем?</label>
+                            <input type="text" id="pName" placeholder="Название товара">
+                        </div>
+                        <div class="input-group">
+                            <label>Где продаем?</label>
+                            <select id="pMarket">
+                                <option value="Kaspi.kz">Kaspi.kz</option>
+                                <option value="Wildberries">Wildberries</option>
+                                <option value="Ozon">Ozon</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Главные фишки</label>
+                            <textarea id="pFeatures" placeholder="Опишите свойства товара..."></textarea>
+                        </div>
+                        <button id="genBtn" class="primary-button">Сгенерировать</button>
+                    </div>
+
+                    <div class="card result-card">
+                        <div class="card-header">
+                            <span class="label">Результат</span>
+                            <button id="copyBtn" class="text-button" onclick="copyContent()">Копировать</button>
+                        </div>
+                        <div id="outputContainer" class="result-body">
+                            <div class="empty-state">
+                                <p>Ваш текст появится здесь после нажатия кнопки</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="tab-analytics" class="tab-content">
+                <header class="section-header">
+                    <h1>Ваша статистика</h1>
+                </header>
+                <div class="stats-row">
+                    <div class="stat-bubble">
+                        <span class="val" id="stat-gen">0</span>
+                        <span class="desc">текстов</span>
+                    </div>
+                    <div class="stat-bubble">
+                        <span class="val" id="stat-words">0</span>
+                        <span class="desc">слов</span>
+                    </div>
+                </div>
+                <div class="card chart-card">
+                    <canvas id="usageChart"></canvas>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
